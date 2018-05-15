@@ -1,0 +1,52 @@
+* {
+  font-family: verdana, sans-serif;
+}
+
+body {
+  margin: 0px;
+  width: 100%;
+}
+
+.flexbox {
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.middle {
+  margin: 0 auto;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.evenly {
+  justify-content: space-evenly;
+}
+
+.center {
+  justify-content: center;
+}
+
+.start {
+  justify-content: flex-start;
+}
+
+.self_center {
+  align-self: center;
+}
+
+.self_baseline {
+  align-self: flex-end;
+}
