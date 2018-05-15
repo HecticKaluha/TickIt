@@ -35,6 +35,10 @@ body {
   justify-content: space-evenly;
 }
 
+.between{
+  justify-content: space-between;
+}
+
 .center {
   justify-content: center;
 }
@@ -49,4 +53,8 @@ body {
 
 .self_baseline {
   align-self: flex-end;
+}
+
+a {
+  text-decoration:none;
 }

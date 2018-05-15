@@ -1,0 +1,8 @@
+.loginform
+{
+  max-width: 350px;
+}
+.form-field > *, .form-buttons > *{
+  flex:1;
+  margin: 5px;
+}
