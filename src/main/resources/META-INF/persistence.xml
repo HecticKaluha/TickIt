@@ -4,18 +4,18 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd" version="2.1">
     <persistence-unit name="TickItPersistence">
-        <!--<description>This unit manages all instances of classes within the TickIT application designed by Stefano Verhoeve-->
-        <!--</description>-->
-        <!--<jta-data-source>jdbc/TickItDS</jta-data-source>-->
-        <!--<exclude-unlisted-classes>false</exclude-unlisted-classes>-->
-        <!--<properties>-->
-            <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->
-            <!--<property name="eclipselink.logging.logger" value="DefaultLogger"/>-->
-            <!--<property name="eclipselink.logging.level" value="FINE"/>-->
-            <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/tickitdb"/>-->
-            <!--<property name="javax.persistence.jdbc.user" value="root"/>-->
-            <!--<property name="javax.persistence.jdbc.password" value="root"/>-->
-        <!--</properties>-->
+        <description>This unit manages all instances of classes within the TickIT application designed by Stefano Verhoeve
+        </description>
+        <jta-data-source>jdbc/TickItDS</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="eclipselink.logging.logger" value="DefaultLogger"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tickitdb"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+        </properties>
     </persistence-unit>
 </persistence>

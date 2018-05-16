@@ -13,15 +13,15 @@ export class AccountService {
 
   }
 
-  public login(login: string, password: string) {
-    let body = {login: login, password: password};
+  public login(username: string, password: string) {
+    let body = {username: username, password: password};
     this.httpClient.post(`${this.postLoginURL}`, body, {observe: 'response'}).subscribe(
       (res) => {
         let token = res.headers.get('Authorization');
         if (token != null) {
           this.token = token;
-          localStorage.setItem('currentUser', JSON.stringify({username: login, token: token}));
-          localStorage.setItem('loggedinuser', login);
+          localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
+          localStorage.setItem('loggedinuser', username);
           localStorage.setItem('token', token);
           this.router.navigateByUrl('/home/');
         }

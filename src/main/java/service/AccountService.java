@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 @Stateless
 public class AccountService {
+
+    //cant inject the bean
     @Inject
     private AccountDao accountDao;
 
@@ -19,5 +21,9 @@ public class AccountService {
 
     public String issueToken(String login) {
         return accountDao.issueToken(login);
+    }
+
+    public void createAccount(String email, String username, String password){
+        accountDao.createAccount(email, username, password);
     }
 }

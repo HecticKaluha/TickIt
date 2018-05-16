@@ -5,7 +5,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import util.DateUtil;
 import util.KeyGenerator;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -16,14 +15,13 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.LocalDateTime;
 import java.util.Date;
-
 import com.google.common.hash.Hashing;
 
 @Stateless
 public class AccountDaoJPAImp implements AccountDao {
 
-    //@PersistenceContext(unitName = "tickitPersistence")
-    //private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
     @Inject
     private KeyGenerator keyGenerator;
@@ -40,11 +38,11 @@ public class AccountDaoJPAImp implements AccountDao {
     @Override
     public void authenticate(String username, String password) throws SecurityException {
         try {
-            /*Account account = em.createQuery("SELECT a FROM Account a WHERE a.username = :username AND a.password = :password", Account.class)
+            Account account = em.createQuery("SELECT a FROM Account a WHERE a.username = :username AND a.password = :password", Account.class)
                     .setParameter("username", username).setParameter("password", Hashing.sha256()
                             .hashString(password, StandardCharsets.UTF_8)
                             .toString())
-                    .getSingleResult();*/
+                    .getSingleResult();
         } catch (Exception e) {
             throw new SecurityException("Invalid user/password");
         }
@@ -62,5 +60,19 @@ public class AccountDaoJPAImp implements AccountDao {
                 .compact();
         System.out.println("#### generating token for a key : " + jwtToken + " - " + key);
         return jwtToken;
+    }
+
+    @Override
+    public void createAccount(String email, String username, String password) {
+        try{
+            Account account = new Account(email, username, password);
+            em.persist(account);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
     }
 }
