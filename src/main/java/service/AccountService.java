@@ -3,13 +3,16 @@ package service;
 import dao.AccountDao;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 
 @Stateless
-public class AccountService {
-
+public class AccountService implements Serializable {
     //cant inject the bean
     @Inject
     private AccountDao accountDao;
+
+    public AccountService() {
+    }
 
     public void authenticate(String login, String password) throws SecurityException {
         try {
@@ -24,6 +27,7 @@ public class AccountService {
     }
 
     public void createAccount(String email, String username, String password){
-        accountDao.createAccount(email, username, password);
+        //accountDao.createAccount(email, username, password);
+        accountDao.test("Gebruiker met email :" + email + " gebruikersnaam " + username + "Zal aangemaakt worden als het werkt");
     }
 }

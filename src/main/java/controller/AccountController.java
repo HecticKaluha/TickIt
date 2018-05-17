@@ -16,6 +16,7 @@ import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 @Path("/account")
 @Produces(MediaType.APPLICATION_JSON)
 public class AccountController {
+
     @Inject
     private AccountService accountService;
 

@@ -5,6 +5,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import util.DateUtil;
 import util.KeyGenerator;
+
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -15,24 +17,31 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.LocalDateTime;
 import java.util.Date;
+
 import com.google.common.hash.Hashing;
 
 @Stateless
 public class AccountDaoJPAImp implements AccountDao {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "TickItPersistence")
     private EntityManager em;
 
     @Inject
     private KeyGenerator keyGenerator;
+
     @Context
     private UriInfo uriInfo;
 
     @Inject
     private DateUtil dateutil;
 
-    private AccountDaoJPAImp() {
 
+    private AccountDaoJPAImp() {
+        this.initAccountDaoJPAImp();
+    }
+
+    public void initAccountDaoJPAImp() {
+        System.out.println("Em instantie heeft is" + em);
     }
 
     @Override
@@ -64,15 +73,17 @@ public class AccountDaoJPAImp implements AccountDao {
 
     @Override
     public void createAccount(String email, String username, String password) {
-        try{
+        try {
             Account account = new Account(email, username, password);
             em.persist(account);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
+    }
 
+    @Override
+    public void test(String message) {
+        System.out.println(message);
     }
 }

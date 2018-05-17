@@ -7,5 +7,7 @@ public interface AccountDao
     String issueToken(String login);
 
     void createAccount(String email, String username, String password);
+
+    void test(String message);
 }
 
