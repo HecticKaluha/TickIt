@@ -1,12 +1,12 @@
 package dao;
 
+
+import com.google.common.hash.Hashing;
 import domain.Account;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import util.DateUtil;
 import util.KeyGenerator;
-
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -18,10 +18,8 @@ import java.security.Key;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import com.google.common.hash.Hashing;
-
 @Stateless
-public class AccountDaoJPAImp implements AccountDao {
+public class AccountDaoImp implements AccountDao {
 
     @PersistenceContext(unitName = "TickItPersistence")
     private EntityManager em;
@@ -35,13 +33,20 @@ public class AccountDaoJPAImp implements AccountDao {
     @Inject
     private DateUtil dateutil;
 
-
-    private AccountDaoJPAImp() {
-        this.initAccountDaoJPAImp();
+    @Override
+    public void test(String message) {
+        System.out.println(message);
     }
 
-    public void initAccountDaoJPAImp() {
-        System.out.println("Em instantie heeft is" + em);
+    @Override
+    public void createAccount(String email, String username, String password) {
+        try {
+            Account account = new Account(email, username, password);
+            em.persist(account);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -71,19 +76,4 @@ public class AccountDaoJPAImp implements AccountDao {
         return jwtToken;
     }
 
-    @Override
-    public void createAccount(String email, String username, String password) {
-        try {
-            Account account = new Account(email, username, password);
-            em.persist(account);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Override
-    public void test(String message) {
-        System.out.println(message);
-    }
 }
