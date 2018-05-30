@@ -68,6 +68,7 @@ a {
 
 #main{
   padding-top:19px;
+  position:relative;
   width: 100%;
   justify-content: space-evenly;
   max-width: 1000px;

@@ -1,0 +1,18 @@
+.project{
+  min-height: 25px;
+}
+.formentry *
+{
+  flex:1;
+}
+.requestform
+{
+  max-width: 800px;
+}
+.requestform > * {
+  margin: 5px;
+}
+.submit
+{
+  width: 200px;
+}

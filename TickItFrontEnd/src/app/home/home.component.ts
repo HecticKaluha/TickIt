@@ -12,4 +12,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  postRequest()
+  {
+    console.log("gelukt bitch");
+  }
+
 }
