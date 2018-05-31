@@ -11,6 +11,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptor} from "./auth/token.interceptor";
 import {AccountService} from "./account.service";
 import { HomeComponent } from './home/home.component';
+import { RequestComponent } from './request/request.component';
+import {RequestService} from "./request.service";
 
 
 @NgModule({
@@ -18,12 +20,14 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
@@ -33,7 +37,8 @@ import { HomeComponent } from './home/home.component';
       useClass: TokenInterceptor,
       multi: true
     },
-    AccountService
+    AccountService,
+    RequestService
   ],
   bootstrap: [AppComponent]
 })
