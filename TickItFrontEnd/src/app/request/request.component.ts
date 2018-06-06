@@ -8,14 +8,18 @@ import {RequestService} from "../request.service";
 })
 export class RequestComponent implements OnInit {
 
+  request;
+  summary;
+  request_type;
+
   constructor(private requestService: RequestService) { }
 
   ngOnInit() {
   }
 
   postRequestAMQ(){
-    this.requestService.postRequestAMQ("", "", "" ).subscribe(res => {
-        console.log("aangekomen");
+    this.requestService.postRequestAMQ(this.request, this.request_type, this.summary ).subscribe(res => {
+        alert("Ticket succesfully created");
       },
       (error) => console.log("error", error)
     );

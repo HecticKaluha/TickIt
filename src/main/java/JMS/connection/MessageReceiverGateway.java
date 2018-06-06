@@ -28,6 +28,5 @@ public class MessageReceiverGateway {
         } catch (JMSException e) {
             System.out.print("Something went wrong while setting the messagelistener because of " + e.getMessage());
         }
-
     }
 }

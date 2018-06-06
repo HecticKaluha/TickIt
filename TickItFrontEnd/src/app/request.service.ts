@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import 'rxjs/add/observable/throw';
 import "rxjs/add/operator/catch";
 
 @Injectable()
 export class RequestService {
 
   postRequestURL = "http://localhost:8080/tickit/request";
-  postAMQ = "http://localhost:8161/api/message/TEST?type=queue";
+  postAMQ = "http://localhost:8161/api/message/RequestsToBroker?type=queue";
 
   constructor(protected httpClient: HttpClient) {
 
@@ -15,21 +16,26 @@ export class RequestService {
 
   public postRequest(project: string, request: string, summary: string) {
     const headers = {
-      Authorization: `Basic ${btoa("admin:admin")}`,
+      // Authorization: `Basic ${btoa("admin:admin")}`,
       'Content-Type': 'text/plain'
     };
 
     return this.httpClient.post(`${this.postRequestURL}`, "message enzo",{headers}).catch(this.handleError);
   }
 
-  public postRequestAMQ(project: string, request: string, summary: string)
+  public postRequestAMQ(request: string, type:string, summary: string)
   {
     const headers = new HttpHeaders({
-      'Authorization' : `Basic ${btoa("admin:admin")}`,
-      'Content-Type': 'text/plain'
+      // 'Authorization' : `Basic ${btoa("admin:admin")}`,
+      'Content-Type': 'application/json'
     });
 
-    return this.httpClient.post(`${this.postAMQ}`,"message enzo",{headers}).catch(this.handleError);
+    let body = {
+      request: request,
+      type:type,
+      summary:summary
+    };
+    return this.httpClient.post(`${this.postAMQ}`, body,{headers, responseType: 'text'}).catch(this.handleError);
   }
 
 

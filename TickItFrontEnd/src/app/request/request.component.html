@@ -1,19 +1,22 @@
 <form (ngSubmit)="postRequestAMQ()" class="flexbox wrap column requestform">
-
-  <select class="select">
-    <option selected="true">--Select project--</option>
-    <option>Project 1</option>
-    <option>Project 2</option>
-  </select>
-
+  <div class="formentry flexbox wrap row">
+    <label for="request_type">Select the type of your request</label>
+    <select [(ngModel)]="request_type" [ngModelOptions]="{standalone: true}" class="select" id="request_type" type="text" class="select">
+      <option selected="true">--Select type--</option>
+      <option>Angular</option>
+      <option>Java</option>
+      <option>C#</option>
+    </select>
+  </div>
   <div class="formentry flexbox wrap row">
     <label for="request">Summarize your feature request:</label>
-    <input id="request" type="text" class="textinput">
+    <input [(ngModel)]="request" [ngModelOptions]="{standalone: true}" id="request" type="text" class="textinput">
   </div>
   <div class="formentry flexbox wrap row">
     <label for="request_description">provide a description of your feature request:</label>
-    <textarea id="request_description" rows="5" cols="50"></textarea>
+    <textarea [(ngModel)]="summary" [ngModelOptions]="{standalone: true}" id="request_description" rows="5" cols="50"></textarea>
   </div>
+
 
   <input type="submit" class="submit end">
 </form>
