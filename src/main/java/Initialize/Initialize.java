@@ -2,10 +2,9 @@ package Initialize;
 
 import service.AccountService;
 import javax.annotation.PostConstruct;
-
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 
 @Singleton
 @Startup

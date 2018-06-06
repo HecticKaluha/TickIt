@@ -17,19 +17,21 @@ export class AccountService {
     let body = {username: username, password: password};
     this.httpClient.post(`${this.postLoginURL}`, body, {observe: 'response'}).subscribe(
       (res) => {
+
         let token = res.headers.get('Authorization');
         if (token != null) {
           this.token = token;
           localStorage.setItem('currentUser', JSON.stringify({username: username, token: token}));
           localStorage.setItem('loggedinuser', username);
           localStorage.setItem('token', token);
+
           this.router.navigateByUrl('/home');
         }
       },
       err => {
         if (err.status == 401) {
           alert("Not logged in!");
-          this.router.navigateByUrl('/home');
+          //this.router.navigateByUrl('/home');
         }
       }
     );
