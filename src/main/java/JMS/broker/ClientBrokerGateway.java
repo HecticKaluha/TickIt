@@ -23,7 +23,9 @@ public class ClientBrokerGateway implements MessageListener {
     }
 
     public void sendReply(Ticket reply) {
-        sender.send(sender.createObjectMessage(reply));
+        Gson g = new Gson();
+        String ticketJSON = g.toJson(reply);
+        sender.sendTextMessage(sender.createTextMessage(ticketJSON));
     }
 
     @Override
@@ -32,7 +34,6 @@ public class ClientBrokerGateway implements MessageListener {
             System.out.println(message.toString());
 
             if (message instanceof TextMessage) {
-                System.out.print("\n I got your Ticket! The Ticket was: " + message.getStringProperty("text"));
                 TextMessage textMessage = (TextMessage)message;
                 String json = textMessage.getText();
                 Gson g = new Gson();

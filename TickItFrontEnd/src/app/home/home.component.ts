@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TicketWsService} from "../ticket-ws.service";
 
 @Component({
   selector: 'app-home',
@@ -7,14 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  private finishedTickets;
 
-  ngOnInit() {
+  constructor(ticketWs: TicketWsService) {
+
+    this.finishedTickets = [];
+    /*ticketWs.messages.subscribe(msg => {
+      console.log("response from websocket: " + msg);
+      this.finishedTickets.push(
+        {
+          type: msg.type,
+          request: msg.request,
+          summary: msg.summary,
+          finished: msg.finished,
+        }
+      );
+    });*/
   }
 
-  postRequest()
-  {
-    console.log("gelukt bitch");
+  ngOnInit() {
   }
 
 }
