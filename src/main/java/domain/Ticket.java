@@ -53,11 +53,9 @@ public class Ticket implements Serializable {
 
     @Override
     public String toString() {
-        return "Ticket{" +
-                "type='" + type + '\'' +
-                ", request='" + request + '\'' +
-                ", summary='" + summary + '\'' +
-                ", finished=" + finished +
-                '}';
+        return type + " Ticket " +
+                ", request: " + request +
+                ", summary: " + summary +
+                ", finished: " + finished;
     }
 }
