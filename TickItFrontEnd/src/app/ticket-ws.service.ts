@@ -18,48 +18,37 @@ export interface Message {
   finished: boolean,
 }
 
+
 @Injectable()
 export class TicketWsService {
 
-  public messages: Subject<Message>;
+  public allTickets: any = [];
+  public javaTickets: any = [];
+  public angularTickets: any = [];
+  public csharpTickets: any = [];
 
-  constructor(wsService: WebsocketService , private client: StompService) {
+  constructor(wsService: WebsocketService, private client: StompService) {
+
     let stomp_subscription = this.client.subscribe('/queue/BrokerToClient');
 
     stomp_subscription.map((message: any) => {
       return message.body;
     }).subscribe((msg_body: string) => {
-      console.log("non parsed", msg_body);
-      let parsed = JSON.parse(msg_body);
-      console.log(`Received: ${parsed}`);
-    });
-
-    /*client.connect("", "",
-      function () {
-        client.subscribe("/queue/BrokerToClient",
-          function (message) {
-            alert(message);
-          },
-          {priority: 9}
-        );
+      let parsed = JSON.parse(JSON.parse(msg_body));
+      switch (parsed.type) {
+        case 'Angular':
+          this.angularTickets.push(parsed);
+          console.log("added to Angular");
+          break;
+        case 'Java':
+          this.javaTickets.push(parsed);
+          console.log("added to Java");
+          break;
+        case 'C#':
+          this.csharpTickets.push(parsed);
+          console.log("added to C#");
       }
-    );*/
+      this.allTickets.push(parsed);
+    });
   }
-
-
-    /*8this.messages = <Subject<any>>wsService
-      .connect(WS_URL)
-      .map((response: MessageEvent): Message => {
-        console.log(response.data);
-
-        let data = JSON.parse(response.data);
-        return {
-          type: data.type,
-          request: data.request,
-          summary: data.summary,
-          finished: data.finished
-        }
-      });
-  }*/
-
 }

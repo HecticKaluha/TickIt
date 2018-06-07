@@ -1,5 +1,34 @@
 <h1>Ticket dashhboard</h1>
-<div class="project">
-
+<div class="project flexbox row wrap">
+  <div class="ticketcolumn">
+    <h2>Angular Tickets</h2>
+    <ng-container *ngFor="let ticket of ticketWs.angularTickets" >
+      <div class="flexbox column wrap ticket">
+        <h3>{{ticket.type}}</h3>
+        <p>{{ticket.request}} 1</p>
+        <p>{{ticket.summary}} 1</p>
+      </div>
+    </ng-container>
+  </div>
+  <div class="ticketcolumn">
+    <h2>Java Tickets</h2>
+    <ng-container *ngFor="let ticket of ticketWs.javaTickets" >
+      <div class="flexbox column wrap ticket">
+        <h3>{{ticket.type}}</h3>
+        <p>{{ticket.request}}</p>
+        <p>{{ticket.summary}}</p>
+      </div>
+    </ng-container>
+  </div>
+  <div class="ticketcolumn">
+    <h2>C# Tickets</h2>
+    <ng-container *ngFor="let ticket of ticketWs.csharpTickets" >
+      <div class="flexbox column wrap ticket">
+        <h3>{{ticket.type}}</h3>
+        <p>{{ticket.request}}</p>
+        <p>{{ticket.summary}}</p>
+      </div>
+    </ng-container>
+  </div>
 </div>
 
