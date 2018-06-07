@@ -23,7 +23,7 @@ export class RequestService {
     return this.httpClient.post(`${this.postRequestURL}`, "message enzo",{headers}).catch(this.handleError);
   }
 
-  public postRequestAMQ(request: string, type:string, summary: string)
+  public postRequestAMQ(request: string, type:string, summary: string, finished: boolean)
   {
     const headers = new HttpHeaders({
       // 'Authorization' : `Basic ${btoa("admin:admin")}`,
@@ -31,9 +31,10 @@ export class RequestService {
     });
 
     let body = {
-      request: request,
       type:type,
-      summary:summary
+      request: request,
+      summary:summary,
+      finished:finished
     };
     return this.httpClient.post(`${this.postAMQ}`, body,{headers, responseType: 'text'}).catch(this.handleError);
   }

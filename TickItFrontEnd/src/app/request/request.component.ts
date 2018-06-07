@@ -18,7 +18,7 @@ export class RequestComponent implements OnInit {
   }
 
   postRequestAMQ(){
-    this.requestService.postRequestAMQ(this.request, this.request_type, this.summary ).subscribe(res => {
+    this.requestService.postRequestAMQ(this.request, this.request_type, this.summary, false).subscribe(res => {
         alert("Ticket succesfully created");
       },
       (error) => console.log("error", error)
